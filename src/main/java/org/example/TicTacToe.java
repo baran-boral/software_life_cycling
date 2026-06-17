@@ -1,4 +1,4 @@
-package java.org.example;
+package org.example;
 
 import java.util.Scanner;
 
@@ -42,10 +42,11 @@ public class TicTacToe {
 
             // Feld ist leer -> Zug ausführen
             board.place(row, col, currentPlayer.getMarker());
-            moveDone = true;
+           // moveDone = true;
 
             // aktueller Spieler wechselt
             switchCurrentPlayer();
+            System.out.println("Next player: " + currentPlayer.getMarker());
         }
         scanner.close();
     }

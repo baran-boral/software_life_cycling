@@ -1,4 +1,4 @@
-package java.org.example;
+package org.example;
 
 public class Board {
     private final char[][] cells;
@@ -13,6 +13,11 @@ public class Board {
     }
 
     public void place(int row, int col, char marker) {
+
+        if (!isCellEmpty(row, col)) {
+            throw new IllegalArgumentException("Cell already occupied");
+        }
+
         cells[row][col] = marker;
     }
 }
