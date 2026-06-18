@@ -1,5 +1,6 @@
 package org.example;
 
+
 public class Board {
     private final char[][] cells;
 
