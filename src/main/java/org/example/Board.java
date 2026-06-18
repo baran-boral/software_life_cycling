@@ -20,4 +20,14 @@ public class Board {
 
         cells[row][col] = marker;
     }
+
+    public void display() {
+        System.out.println("▁▁▁▁▁▁");
+        for (int i = 0; i < 3; i++) {
+            System.out.println("| " + (cells[i][0] == '\0' ? ' ' : cells[i][0]) + " | "
+                    + (cells[i][1] == '\0' ? ' ' : cells[i][1]) + " | "
+                    + (cells[i][2] == '\0' ? ' ' : cells[i][2]) + " |");
+        }
+        System.out.println("▔▔▔▔");
+    }
 }
