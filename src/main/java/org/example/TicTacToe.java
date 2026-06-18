@@ -18,6 +18,7 @@ public class TicTacToe {
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
+        board.display();
 
         boolean moveDone = false;
         while (!moveDone) {
@@ -42,6 +43,7 @@ public class TicTacToe {
 
             // Feld ist leer -> Zug ausführen
             board.place(row, col, currentPlayer.getMarker());
+            board.display();
            // moveDone = true;
 
             // aktueller Spieler wechselt
