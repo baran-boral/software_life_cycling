@@ -20,8 +20,8 @@ public class TicTacToe {
         Scanner scanner = new Scanner(System.in);
         board.display();
 
-        boolean moveDone = false;
-        while (!moveDone) {
+        boolean gameOver = false;
+        while (!gameOver) {
             System.out.println("Current player: " + currentPlayer.getMarker());
 
             System.out.print("Enter row (0-2): ");
@@ -30,7 +30,6 @@ public class TicTacToe {
             System.out.print("Enter column (0-2): ");
             int col = scanner.nextInt();
 
-            // einfache Bounds-Prüfung, damit nichts crasht
             if (row < 0 || row > 2 || col < 0 || col > 2) {
                 System.out.println("Row/column must be between 0 and 2. Try again.");
                 continue;
@@ -41,15 +40,21 @@ public class TicTacToe {
                 continue;
             }
 
-            // Feld ist leer -> Zug ausführen
             board.place(row, col, currentPlayer.getMarker());
             board.display();
-           // moveDone = true;
 
-            // aktueller Spieler wechselt
-            switchCurrentPlayer();
-            System.out.println("Next player: " + currentPlayer.getMarker());
+            if (board.hasWinner()) {
+                System.out.println("Game over! Player " + currentPlayer.getMarker() + " wins!");
+                gameOver = true;
+            } else if (board.isFull()) {
+                System.out.println("Game over! It's a draw.");
+                gameOver = true;
+            } else {
+                switchCurrentPlayer();
+                System.out.println("Next player: " + currentPlayer.getMarker());
+            }
         }
+
         scanner.close();
     }
 
