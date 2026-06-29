@@ -45,10 +45,10 @@ public class TicTacToe {
 
             if (board.hasWinner()) {
                 System.out.println("Game over! Player " + currentPlayer.getMarker() + " wins!");
-                gameOver = true;
+                gameOver = !askPlayAgain(scanner);
             } else if (board.isFull()) {
                 System.out.println("Game over! It's a draw.");
-                gameOver = true;
+                gameOver = !askPlayAgain(scanner);
             } else {
                 switchCurrentPlayer();
                 System.out.println("Next player: " + currentPlayer.getMarker());
@@ -58,11 +58,26 @@ public class TicTacToe {
         scanner.close();
     }
 
+    private boolean askPlayAgain(Scanner sc) {
+        System.out.print("Play again? (y/n): ");
+        String answer = sc.next();
+        if (answer.equalsIgnoreCase("y")) {
+            reset();
+            board.display();
+            return true;
+        }
+        return false;
+    }
+
     private void switchCurrentPlayer() {
         if (currentPlayer == player1) {
             currentPlayer = player2;
         } else {
             currentPlayer = player1;
         }
+    }
+    public void reset() {
+        this.board.reset();
+        this.currentPlayer = player1;
     }
 }

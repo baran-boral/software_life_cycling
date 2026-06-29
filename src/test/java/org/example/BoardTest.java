@@ -140,4 +140,54 @@ public class BoardTest {
     void shouldNotDetectWinnerOnEmptyBoard() {
         assertFalse(board.hasWinner());
     }
+
+    @Test
+    void resetShouldClearBoard() {
+        board.place(0, 0, 'X');
+        board.place(1, 1, 'O');
+
+        board.reset();
+
+        assertTrue(board.isCellEmpty(0, 0));
+        assertTrue(board.isCellEmpty(1, 1));
+    }
+    @Test
+    void resetShouldMakeBoardNotFull() {
+        board.place(0,0,'X');
+        board.place(0,1,'O');
+        board.place(0,2,'X');
+        board.place(1,0,'O');
+        board.place(1,1,'X');
+        board.place(1,2,'O');
+        board.place(2,0,'X');
+        board.place(2,1,'O');
+        board.place(2,2,'X');
+
+        assertTrue(board.isFull());
+
+        board.reset();
+
+        assertFalse(board.isFull());
+    }
+    @Test
+    void resetShouldRemoveWinner() {
+        board.place(0,0,'X');
+        board.place(0,1,'X');
+        board.place(0,2,'X');
+
+        assertTrue(board.hasWinner());
+
+        board.reset();
+
+        assertFalse(board.hasWinner());
+    }
+
+    @Test
+    void resetShouldAllowPlacingMarkerAgain() {
+        board.place(0,0,'X');
+
+        board.reset();
+
+        assertDoesNotThrow(() -> board.place(0,0,'O'));
+    }
 }

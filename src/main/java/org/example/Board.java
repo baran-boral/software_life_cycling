@@ -66,4 +66,9 @@ public class Board {
         }
         System.out.println("▔▔▔▔");
     }
+    public void reset() {
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++)
+                cells[i][j] = '\0';
+    }
 }
